@@ -59,12 +59,13 @@
 
 ## Mount NFS Drive on Local system
 
-### Create Local Client NFS 
+### Create Local Client NFS
 
 `mkdir hf_nfs_client`
 
 ### Mount the NFS on local directory
 
 - Ubuntu: `sudo mount -o nolocks -t nfs 192.168.0.17:/mnt/nfs-server ./hf_nfs_client`
-- Fedora: `sudo mount -t nfs 192.168.0.17:/mnt/hf_nfs_share  ./hf_nfs_client `
+- Fedora: `sudo mount -o nolock -t nfs 192.168.0.17:/mnt/hf_nfs_share  ./hf_nfs_client`
 
+> Change the IP to your own
