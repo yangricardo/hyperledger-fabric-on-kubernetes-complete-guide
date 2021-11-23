@@ -69,3 +69,15 @@
 - Fedora: `sudo mount -o nolock -t nfs 192.168.0.17:/mnt/hf_nfs_share  ./hf_nfs_client`
 
 > Change the IP to your own
+
+### Check nodes running
+
+`kubectl get nodes`
+
+### Create the persistent volume for kubernetes using the NFS filesystem
+
+`kubectl apply -f hlf-kubernetes-configs/nfs-config/pv.yaml`
+
+```bash
+persistentvolume/hf-on-k8s-course created
+```

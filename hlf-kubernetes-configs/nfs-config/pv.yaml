@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hf-on-k8s-course
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    path: /mnt/hf_nfs_share/
+    server: 192.168.0.17
