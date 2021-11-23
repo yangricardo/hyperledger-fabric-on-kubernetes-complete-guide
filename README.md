@@ -16,3 +16,43 @@
 - `asdf global minikube latest`
 
 > This will create a default and local kubernetes cluster
+
+### Setting NFS (Network File Systems)
+
+#### Install on Ubuntu / Debian
+
+`sudo apt-get install nfs-kernel-server`
+
+#### Install on Fedora
+
+`sudo dnf install nfs-utils`
+
+### Activate the nfs server service
+
+`sudo systemctl enable --now nfs-server`
+
+### Create the NFS directory
+
+- [Fedora](https://linuxconfig.org/how-to-configure-nfs-on-linux)
+
+`sudo mkdir -p /mnt/hf_nfs_share`
+
+`sudo chmod 777 /mnt/hf_nfs_share`
+
+`sudo nano /etc/hf_nfs_share`
+
+> Paste below
+
+```bash
+/mnt/hf_nfs_share *(rw,sync,no_subtree_check,insecure)
+```
+
+`sudo exportfs -arv`
+
+### Restart on Ubuntu
+
+`sudo systemctl restart nfs-kernel-server`
+
+### Restart on Fedora
+
+`sudo systemctl restart nfs-server`
