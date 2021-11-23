@@ -6,3 +6,5 @@
 
 - Installed [ASDF](https://asdf-vm.com/#/core-manage-asdf)
 - Activated and installed [ASDF Kubectl plugin](https://github.com/asdf-community/asdf-kubectl)
+
+### Install [Kubernetes IDE](https://k8slens.dev)
