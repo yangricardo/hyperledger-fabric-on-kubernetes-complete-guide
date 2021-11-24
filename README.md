@@ -134,4 +134,75 @@ Used By:       <none>
 Events:        <none>
 ```
 
-``````
+## Pod workload configuration
+
+```bash
+> kubectl apply -f hf-on-k8s-course/nfs-config/pod.yaml 
+pod/hf-on-k8s-course-pv-pod created
+
+> kubectl describe pod hf-on-k8s-course-pv-podName:         hf-on-k8s-course-pv-pod
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.49.2
+Start Time:   Tue, 23 Nov 2021 20:53:09 -0300
+Labels:       app=hf-on-k8s-course-pv
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.3
+IPs:
+  IP:  172.17.0.3
+Containers:
+  hf-on-k8s-course-pv-container:
+    Container ID:   docker://18ab92515123d036a5c525ff2b7fb444d2fe7df39677a459b95f459b2fad46d0
+    Image:          nginx
+    Image ID:       docker-pullable://nginx@sha256:097c3a0913d7e3a5b01b6c685a60c03632fc7a2b50bc8e35bcaa3691d788226e
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 23 Nov 2021 20:53:17 -0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  128Mi
+    Requests:
+      cpu:        250m
+      memory:     64Mi
+    Environment:  <none>
+    Mounts:
+      /usr/share/nginx/html/ from hf-on-k8s-course-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-w7k8f (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  hf-on-k8s-course-volume:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  hf-on-k8s-course
+    ReadOnly:   false
+  kube-api-access-w7k8f:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  96s   default-scheduler  Successfully assigned default/hf-on-k8s-course-pv-pod to minikube
+  Normal  Pulling    96s   kubelet            Pulling image "nginx"
+  Normal  Pulled     88s   kubelet            Successfully pulled image "nginx" in 7.376034475s
+  Normal  Created    88s   kubelet            Created container hf-on-k8s-course-pv-container
+  Normal  Started    88s   kubelet            Started container hf-on-k8s-course-pv-container
+```
+
+> It's possible to verify if the configuration worked using the LENS Ide by entering on cluster (eg: minikube) > workloads > pods
+> Select the shell option and execute `cd /usr/share/nginx/html`
+> Paste some file on your local mounted `hf_nfs_client` and on the pod's shell verifiy if the file exists using `ls` command
