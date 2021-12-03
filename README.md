@@ -284,3 +284,11 @@ deployment.apps "nginx-deployment" deleted
 ## Remove permissions
 
 `sudo chmod -x /mnt/hf_nfs_share/scripts -R`
+
+## Configuring `Organizations FabricCA`
+
+`mkdir -p ./hf_nfs_client/organizations`
+`cp -r ./hf_nfs_client/fabric-ca ./hf_nfs_client/organizations`
+
+> This will prepare the base configuration for each organization.
+> Note that the volumeMounts should match the `subPath` on deployment yaml, also, the `persistentVolumeClaim.claimName`
