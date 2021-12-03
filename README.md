@@ -492,3 +492,7 @@ configmap/builders-config created
 ### Peer0 Org1
 
 `kubectl apply -f ./hf-on-k8s-course/7.peers/org1`
+
+### Peer0 Org2
+
+`kubectl apply -f ./hf-on-k8s-course/7.peers/org2`
