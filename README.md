@@ -351,3 +351,22 @@ spec:
               mountPath: /etc/hyperledger/fabric-ca-server
               subPath: organizations/fabric-ca/<ca-org#>
 ```
+
+### Generate the Fabric CA Service Yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: <ca-org#>
+  labels:
+    app: <ca-org#>
+spec:
+  type: ClusterIP
+  selector:
+    app: <ca-org#>
+  ports:
+    - protocol: TCP
+      targetPort: <fabric_ca_port>
+      port: <fabric_ca_port>
+```
