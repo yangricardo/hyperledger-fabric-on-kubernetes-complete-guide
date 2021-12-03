@@ -392,3 +392,13 @@ deployment.apps/ca-org1 created
 > kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1-service.yaml 
 service/ca-org1 created
 ```
+
+### Repeat the steps for Org2 FabricCA
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2.yaml        
+deployment.apps/ca-org2 created
+
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2-service.yaml 
+service/ca-org2 created
+```
