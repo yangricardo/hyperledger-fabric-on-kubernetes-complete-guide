@@ -412,3 +412,13 @@ deployment.apps/ca-org3 created
 > kubectl apply -f ./hf-on-k8s-course/2.ca-config/org3/ca-org3-service.yaml 
 service/ca-org3 created
 ```
+
+### Repeat the steps for Orderer Org FabricCA
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer.yaml        
+deployment.apps/ca-org3 created
+
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer-service.yaml 
+service/ca-org3 created
+```
