@@ -269,3 +269,8 @@ Events:
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set nginx-deployment-66b6c48dd5 to 2
 ```
+
+```bash
+> kubectl delete deployment nginx-deployment
+deployment.apps "nginx-deployment" deleted
+```
