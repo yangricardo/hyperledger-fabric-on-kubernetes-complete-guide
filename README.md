@@ -437,3 +437,13 @@ service/ca-org3 created
 > kubectl apply -f ./hf-on-k8s-course/4.channel-configuration-artifacts/channel-configuration-job.yaml 
 job.batch/artifacts created
 ```
+
+## Deploy orderers
+
+## orderer.example.com
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer1        
+service/orderer created
+deployment.apps/orderer created
+```

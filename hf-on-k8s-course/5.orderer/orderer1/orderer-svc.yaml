@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-    name: orderer1
+    name: orderer
     labels:
-        run: orderer1
+        run: orderer
 spec:
     selector:
-        name: orderer1
+        name: orderer
     type: ClusterIP
     ports:
         - protocol: TCP
