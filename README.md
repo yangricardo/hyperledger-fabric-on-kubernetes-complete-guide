@@ -292,3 +292,62 @@ deployment.apps "nginx-deployment" deleted
 
 > This will prepare the base configuration for each organization.
 > Note that the volumeMounts should match the `subPath` on deployment yaml, also, the `persistentVolumeClaim.claimName`
+
+### Generate the Fabric CA Deployment Yaml
+
+> Change the content with <content> with the desired value
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <ca-org#>
+spec:
+  selector:
+    matchLabels:
+      app: <ca-org#>
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: <ca-org#>
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: <persistent volume claim name>
+      containers:
+        - name: <ca-org#>
+          image: hyperledger/fabric-ca:1.5.2
+          imagePullPolicy: 'Always'
+          command:
+            [
+              'fabric-ca-server',
+              'start',
+              '-b',
+              '<fabric_ca_registrar_id>:<fabric_ca_registrar_password>',
+              '--port',
+              '<fabric_ca_port>',
+              '-d',
+            ]
+          resources:
+            requests:
+              memory: '300Mi'
+              cpu: '250m'
+            limits:
+              memory: '400Mi'
+              cpu: '350m'
+          env:
+            - name: FABRIC_CA_SERVER_CA_NAME
+              value: <ca-org#>
+            - name: FABRIC_CA_SERVER_TLS_ENABLED
+              value: 'true'
+            - name: FABRIC_CA_SERVER_CSR_CN
+              value: '<ca-org#>'
+            - name: FABRIC_CA_SERVER_CSR_HOSTS
+              value: '<ca-org#>'
+          volumeMounts:
+            - name: data
+              mountPath: /etc/hyperledger/fabric-ca-server
+              subPath: organizations/fabric-ca/<ca-org#>
+```
