@@ -426,3 +426,7 @@ service/ca-org3 created
 ### Deploy all script FabricCA Script
 
 `bash deploy.all.ca.sh`
+
+### Run create-certs-job to generate the nodes certificates
+
+`kubectl apply -f ./hf-on-k8s-course/3.node-certificates-generation/create-certs-job.yaml`
