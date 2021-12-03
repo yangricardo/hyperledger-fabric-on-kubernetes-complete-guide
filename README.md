@@ -430,3 +430,10 @@ service/ca-org3 created
 ### Run create-certs-job to generate the nodes certificates
 
 `kubectl apply -f ./hf-on-k8s-course/3.node-certificates-generation/create-certs-job.yaml`
+
+### Run channel-configuration-job to generate the channel configuration artifacts
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/4.channel-configuration-artifacts/channel-configuration-job.yaml 
+job.batch/artifacts created
+```
