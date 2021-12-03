@@ -37,6 +37,8 @@
 
 `sudo mkdir -p /mnt/hf_nfs_share`
 
+`sudo chown -R $USER:$USER /mnt/hf_nfs_share`
+
 `sudo chmod 777 /mnt/hf_nfs_share`
 
 `sudo nano /etc/hf_nfs_share`
@@ -278,3 +280,7 @@ deployment.apps "nginx-deployment" deleted
 ## Copying the pre requisite scripts to nfs folder
 
 `cp -R hlf-kubernetes/prerequsite/* hf_nfs_client`
+
+## Remove permissions
+
+`sudo chmod -x /mnt/hf_nfs_share/scripts -R`
