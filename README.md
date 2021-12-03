@@ -274,3 +274,7 @@ Events:
 > kubectl delete deployment nginx-deployment
 deployment.apps "nginx-deployment" deleted
 ```
+
+## Copying the pre requisite scripts to nfs folder
+
+`cp -R hlf-kubernetes/prerequsite/* hf_nfs_client`
