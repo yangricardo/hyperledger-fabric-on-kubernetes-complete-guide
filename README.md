@@ -440,7 +440,7 @@ job.batch/artifacts created
 
 ## Deploy orderers
 
-## orderer.example.com
+### orderer.example.com
 
 ```bash
 > kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer1        
@@ -448,7 +448,7 @@ service/orderer created
 deployment.apps/orderer created
 ```
 
-## orderer2.example.com
+### orderer2.example.com
 
 ```bash
 > kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer2        
@@ -456,7 +456,7 @@ service/orderer created
 deployment.apps/orderer created
 ```
 
-## orderer3.example.com
+### orderer3.example.com
 
 ```bash
 > kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer3        
@@ -464,10 +464,18 @@ service/orderer created
 deployment.apps/orderer created
 ```
 
-## orderer4.example.com
+### orderer4.example.com
 
 ```bash
 > kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer4
+service/orderer created
+deployment.apps/orderer created
+```
+
+### orderer5.example.com
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer5
 service/orderer created
 deployment.apps/orderer created
 ```
