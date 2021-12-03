@@ -370,3 +370,25 @@ spec:
       targetPort: <fabric_ca_port>
       port: <fabric_ca_port>
 ```
+
+## Deploy the FabricCA
+
+### Update the permissions for <NFS_DIR>/organizations
+
+`sudo chmod 777 /mnt/hf_nfs_share/organizations -R`
+
+> Without this, the deployment and the server will not run properly
+
+### Apply the deployment
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1.yaml 
+deployment.apps/ca-org1 created
+```
+
+### Apply the service to the deployment applied
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1-service.yaml 
+service/ca-org1 created
+```
