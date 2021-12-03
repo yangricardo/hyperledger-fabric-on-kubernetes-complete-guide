@@ -479,3 +479,10 @@ deployment.apps/orderer created
 service/orderer created
 deployment.apps/orderer created
 ```
+
+## Apply Config map for external chaincode builders
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/6.configmap                                            
+configmap/builders-config created
+```
