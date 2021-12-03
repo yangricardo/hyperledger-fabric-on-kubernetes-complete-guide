@@ -463,3 +463,11 @@ deployment.apps/orderer created
 service/orderer created
 deployment.apps/orderer created
 ```
+
+## orderer4.example.com
+
+```bash
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer4
+service/orderer created
+deployment.apps/orderer created
+```
