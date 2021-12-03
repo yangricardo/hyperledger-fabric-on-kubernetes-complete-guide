@@ -422,3 +422,7 @@ deployment.apps/ca-org3 created
 > kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer-service.yaml 
 service/ca-org3 created
 ```
+
+### Deploy all script FabricCA Script
+
+`bash deploy.all.ca.sh`
