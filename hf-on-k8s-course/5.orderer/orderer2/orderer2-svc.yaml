@@ -1,17 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: orderer
+  name: orderer2
   labels:
-    run: orderer
+    run: orderer2
 spec:
   selector:
-    name: orderer
+    name: orderer2
   type: ClusterIP
   ports:
     - protocol: TCP
       port: 7050
       name: grpc
-    - protocol: TCP
-      port: 9443
-      name: metrics
