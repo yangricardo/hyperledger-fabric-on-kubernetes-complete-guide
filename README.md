@@ -206,3 +206,31 @@ Events:
 > It's possible to verify if the configuration worked using the LENS Ide by entering on cluster (eg: minikube) > workloads > pods
 > Select the shell option and execute `cd /usr/share/nginx/html`
 > Paste some file on your local mounted `hf_nfs_client` and on the pod's shell verifiy if the file exists using `ls` command
+
+## Run example nginx pod
+
+`kubectl apply -f https://k8s.io/examples/application/deployment.yaml`
+
+> This will run a nginx server similar to below based on official run a [stateless application using a deployment sample](https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/)
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
