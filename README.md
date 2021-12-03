@@ -85,7 +85,7 @@
 > A [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#introduction) (PV) is a piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a resource in the cluster just like a node is a cluster resource. PVs are volume plugins like Volumes, but have a lifecycle independent of any individual Pod that uses the PV. This API object captures the details of the implementation of the storage, be that NFS, iSCSI, or a cloud-provider-specific storage system.
 
 ```bash
-> kubectl apply -f hf-on-k8s-course/nfs-config/pv.yaml
+> kubectl apply -f hf-on-k8s-course/1.nfs-config/pv.yaml
 persistentvolume/hf-on-k8s-course created
 
 > kubectl describe pv hf-on-k8s-course
@@ -117,7 +117,7 @@ Events:        <none>
 > While PersistentVolumeClaims allow a user to consume abstract storage resources, it is common that users need PersistentVolumes with varying properties, such as performance, for different problems. Cluster administrators need to be able to offer a variety of PersistentVolumes that differ in more ways than size and access modes, without exposing users to the details of how those volumes are implemented. For these needs, there is the StorageClass resource.
 
 ```bash
->kubectl apply -f hf-on-k8s-course/nfs-config/pvc.yaml
+>kubectl apply -f hf-on-k8s-course/1.nfs-config/pvc.yaml
 persistentvolumeclaim/hf-on-k8s-course created
 
 > kubectl describe pvc hf-on-k8s-courseName:          hf-on-k8s-course
@@ -139,7 +139,7 @@ Events:        <none>
 ## Pod workload configuration
 
 ```bash
-> kubectl apply -f hf-on-k8s-course/nfs-config/pod.yaml 
+> kubectl apply -f hf-on-k8s-course/1.nfs-config/pod.yaml 
 pod/hf-on-k8s-course-pv-pod created
 
 > kubectl describe pod hf-on-k8s-course-pv-podName:         hf-on-k8s-course-pv-pod
