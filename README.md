@@ -1443,3 +1443,29 @@ tar cfz ${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.json
 `kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org3.tgz`
 
 `basic:bb0b5a748e441a2451dd72b1bc66927e5cb167cc7b9306e57cf4818df0b68f5a`
+
+## Lifecycle chaincode install
+
+### Build docker image for chaincode
+
+> at `hf_nfs_client/chaincode/basic`
+
+> execute`docker build -t yangricardo/basic-cc-hlf:1.0 .`
+
+> in case of `minikube` and the docker image not pushed on remote container repository, it's possible to load execute `minikube image load yangricardo/basic-cc-hlf:1.0 --daemon` in order to "pull", that is, update the image definition on local minikube
+
+### Configure the deployment and service yaml files for chaincode deployment
+
+```bash
+> kubectl apply -f hf-on-k8s-course/9.cc-deploy/basic/org1
+deployment.apps/chaincode-basic-org1 created
+service/basic-org1 created
+
+> kubectl apply -f hf-on-k8s-course/9.cc-deploy/basic/org2
+deployment.apps/chaincode-basic-org2 created
+service/basic-org2 created
+
+> kubectl apply -f hf-on-k8s-course/9.cc-deploy/basic/org3
+deployment.apps/chaincode-basic-org3 created
+service/basic-org3 created
+```
