@@ -1413,3 +1413,33 @@ echo "{\"path\":\"\",\"type\":\"external\",\"label\":\"${CHAINCODE_NAME}\"}" > m
 
 tar cfz ${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.json
 ```
+
+## Lifecycle Install
+
+### Enter on cli bash connected with Org1 Peer0
+
+`kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -it -- bash`
+
+### Go to chaincode package directory
+
+`cd /opt/gopath/src/github.com/chaincode/basic/packaging/`
+
+### Run Peer Lifecycle install command indicating the package file needed to use
+
+`peer lifecycle install basic-org1.tgz`
+
+### Look at the end of the logs to identify the package id to be used on other steps
+
+> For example: `basic:42ef0e00b38ba61fcfd793391b6c12a16b26627c66233d269da38b8c5d6c6c9e`
+
+### Repeat the process to Org2 Peer1
+
+`kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -it -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org2.tgz`
+
+`basic:ef1e95b0780c4b31cbce4b4e1d54682b6e7fa043d1e4738e0fb120772e64257e`
+
+### Repeat the process to Org3 Peer1
+
+`kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org3.tgz`
+
+`basic:bb0b5a748e441a2451dd72b1bc66927e5cb167cc7b9306e57cf4818df0b68f5a`
