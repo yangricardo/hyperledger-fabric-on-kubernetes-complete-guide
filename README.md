@@ -1494,3 +1494,18 @@ service/basic-org3 created
 > kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:3ae51a8c8130c679d475ffaf7487edd328c59ad2d54c263b0ebcdde99f55861f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 ```
+
+## Check commit readiness
+
+```bash
+> kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
+> peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name basic --version 1.0 --init-required --sequence 1 -o -orderer:7050 --tls --cafile $ORDERER_CA --output json
+
+{
+        "approvals": {
+                "Org1MSP": true,
+                "Org2MSP": true,
+                "Org3MSP": true
+        }
+}
+```
