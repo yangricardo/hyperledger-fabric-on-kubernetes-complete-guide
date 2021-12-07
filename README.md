@@ -1373,3 +1373,9 @@ lgKP+nfoBre1r5JFT7fp
 2021-12-04 00:03:58.655 UTC [grpc] InfoDepth -> DEBU 00d [core]Channel Connectivity change to READY
 2021-12-04 00:03:58.663 UTC 0021 INFO [channelCmd] update -> Successfully submitted channel update
 ```
+
+## Lifecycle Chaincode
+
+## Copy Chaincode
+
+`cp -R hlf-kubernetes/8.chaincode  hf-on-k8s-course`
