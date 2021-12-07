@@ -283,7 +283,7 @@ deployment.apps "nginx-deployment" deleted
 
 ## Remove permissions
 
-`sudo chmod -x /mnt/hf_nfs_share/scripts -R`
+`sudo chmod +x /mnt/hf_nfs_share/scripts -R`
 
 ## Configuring `Organizations FabricCA`
 
@@ -1395,7 +1395,9 @@ lgKP+nfoBre1r5JFT7fp
 CHAINCODE_NAME=${1:-"basic"}
 ORG=${2:-"org1"}
 CHAINCODE_SERVER_PORT=${3:-"7052"}
+CHAINCODE_ROOT_DIR=${4:-"./hf_nfs_client/chaincode/${CHAINCODE_NAME}/packaging"}
 ADDRESS="${CHAINCODE_NAME}-${ORG}:${CHAINCODE_SERVER_PORT}"
+
 
 echo "{
     \"address\": \"${ADDRESS}\",
@@ -1405,13 +1407,13 @@ echo "{
     \"client_key\": \"-----BEGIN EC PRIVATE KEY----- ... -----END EC PRIVATE KEY-----\",
     \"client_cert\": \"-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\",
     \"root_cert\": \"-----BEGIN CERTIFICATE---- ... -----END CERTIFICATE-----\"
-}" > connection.json
+}" > ${CHAINCODE_ROOT_DIR}/connection.json
 
 tar cfz code.tar.gz connection.json
 
-echo "{\"path\":\"\",\"type\":\"external\",\"label\":\"${CHAINCODE_NAME}\"}" > metadata.json
+echo "{\"path\":\"\",\"type\":\"external\",\"label\":\"${CHAINCODE_NAME}\"}" > ${CHAINCODE_ROOT_DIR}/metadata.json
 
-tar cfz ${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.json
+tar cfz ${CHAINCODE_ROOT_DIR}/${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.json
 ```
 
 ## Lifecycle Install
@@ -1430,19 +1432,19 @@ tar cfz ${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.json
 
 ### Look at the end of the logs to identify the package id to be used on other steps
 
-> For example: `basic:42ef0e00b38ba61fcfd793391b6c12a16b26627c66233d269da38b8c5d6c6c9e`
+> For example: `basic:f44db99fa698325882c4392a3dd5f8bd68149f8aaee5eeabff84be5f6cf5b145`
 
 ### Repeat the process to Org2 Peer1
 
 `kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -it -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org2.tgz`
 
-`basic:ef1e95b0780c4b31cbce4b4e1d54682b6e7fa043d1e4738e0fb120772e64257e`
+`basic:b7967d6e60ec7d6cc3e7b615944fbc521f21c6e9b3673f3378fcc0354a46cb0f`
 
 ### Repeat the process to Org3 Peer1
 
 `kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org3.tgz`
 
-`basic:bb0b5a748e441a2451dd72b1bc66927e5cb167cc7b9306e57cf4818df0b68f5a`
+`basic:3ae51a8c8130c679d475ffaf7487edd328c59ad2d54c263b0ebcdde99f55861f`
 
 ## Lifecycle chaincode install
 
@@ -1468,4 +1470,27 @@ service/basic-org2 created
 > kubectl apply -f hf-on-k8s-course/9.cc-deploy/basic/org3
 deployment.apps/chaincode-basic-org3 created
 service/basic-org3 created
+```
+
+## Approve Chaincode for org
+
+### Org1
+
+```bash
+> kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -it -- bash
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:f44db99fa698325882c4392a3dd5f8bd68149f8aaee5eeabff84be5f6cf5b145 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+```
+
+### Org2
+
+```bash
+> kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -it -- bash
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:b7967d6e60ec7d6cc3e7b615944fbc521f21c6e9b3673f3378fcc0354a46cb0f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+```
+
+### Org3
+
+```bash
+> kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:3ae51a8c8130c679d475ffaf7487edd328c59ad2d54c263b0ebcdde99f55861f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 ```

@@ -66,3 +66,7 @@ spec:
             - name: fabricfiles
               mountPath: /system-genesis-block
               subPath: system-genesis-block
+            
+            - mountPath: /var/hyperledger/production
+              name: fabricfiles
+              subPath: state/ordererOrg/orderer5
