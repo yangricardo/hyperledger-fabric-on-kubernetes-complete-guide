@@ -1610,3 +1610,14 @@ pushd
 > minikube image load yangricardo/hf-k8s-web:latest --daemon
 > kubectl -f hf-on-k8s-course/11.ui/frontend.yaml apply
 ```
+
+## Deploy Hyperleder Explorer
+
+```bash
+> kubectl -f hf-on-k8s-course/12.explorer/explorer.yaml apply
+> kubectl -f hf-on-k8s-course/12.explorer/explorerdb.yaml apply
+> kubectl -f hf-on-k8s-course/12.explorer/explorer.yaml apply
+> kubectl port-forward services/explorer 8080
+```
+
+> Check on configmap if the private key path is correct
