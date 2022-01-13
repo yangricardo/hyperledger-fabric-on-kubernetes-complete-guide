@@ -1600,3 +1600,13 @@ configmap/ca-client-config created
 ```
 
 ### Register account
+
+## Deploy Web UI Server
+
+```bash
+pushd
+
+> docker build -t yangricardo/hf-k8s-web:latest .
+> minikube image load yangricardo/hf-k8s-web:latest --daemon
+> kubectl -f hf-on-k8s-course/11.ui/frontend.yaml apply
+```
