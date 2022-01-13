@@ -1582,3 +1582,10 @@ service/basic-org3 created
 > cd hf_nfs_client
 > bash scripts/ccp.sh
 ```
+
+### Override FabricCA Default Configuration
+
+```bash
+> kubectl -f hf-on-k8s-course/10.api/k8/configmap.yaml apply
+configmap/ca-client-config created
+```
