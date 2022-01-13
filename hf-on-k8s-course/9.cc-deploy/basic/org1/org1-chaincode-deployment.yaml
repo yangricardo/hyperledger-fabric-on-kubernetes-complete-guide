@@ -18,13 +18,13 @@ spec:
         app: chaincode-basic-org1
     spec:
       containers:
-        - image: yangricardo/basic-cc-hlf:1.0
+        - image: yangricardo/basic-cc-hlf:latest
           imagePullPolicy: Never
           name: chaincode-basic-org1
           env:
             - name: CHAINCODE_ID
-              value: "basic:42ef0e00b38ba61fcfd793391b6c12a16b26627c66233d269da38b8c5d6c6c9e"
+              value: 'basic:4cfa3aefef49390e5783a4947f9668b2f6f0374cfd6436e52caedf6351b01879'
             - name: CHAINCODE_SERVER_ADDRESS
-              value: "0.0.0.0:7052"
+              value: '0.0.0.0:7052'
           ports:
             - containerPort: 7052

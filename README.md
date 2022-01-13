@@ -1430,17 +1430,41 @@ tar cfz ${CHAINCODE_ROOT_DIR}/${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.
 
 `peer lifecycle chaincode install basic-org1.tgz`
 
+#### fabric-es-chaincode org1
+
 kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org1.tgz
 
 fabric-es-chaincode:f1684b419bab0d122b62f452ed1a9f756de8f58150599f6a3c783d65eee964ee
+
+#### fabric-es-chaincode org2
 
 kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org2.tgz
 
 fabric-es-chaincode:f3362fb9f0b5434e545f1dd36a78f05d05dc323645e5e3e48bae35d77d9762e3
 
+#### fabric-es-chaincode org3
+
 kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org3.tgz
 
 fabric-es-chaincode:3a427a3537fc57ffd899c34f5eb8889f2726bf0b69fee2c6d04459edd10b1a41
+
+#### basic org1
+
+kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org1.tgz
+
+basic:4cfa3aefef49390e5783a4947f9668b2f6f0374cfd6436e52caedf6351b01879
+
+#### basic org2
+
+kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org2.tgz
+
+basic:1694501aa998bdc5781575c2bcb3606e29a43f7ebfdacdcfcef966fb1b5a45f1
+
+#### basic org3
+
+kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/basic/packaging/basic-org3.tgz
+
+basic:c5525fee4ca14a3fee7d8b35a7cdfb29955bcbc28bbc97e9f4505ff151a01873
 
 ### Look at the end of the logs to identify the package id to be used on other steps
 
@@ -1490,7 +1514,7 @@ service/basic-org3 created
 
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -it -- bash
-> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:f44db99fa698325882c4392a3dd5f8bd68149f8aaee5eeabff84be5f6cf5b145 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:4cfa3aefef49390e5783a4947f9668b2f6f0374cfd6436e52caedf6351b01879 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:f1684b419bab0d122b62f452ed1a9f756de8f58150599f6a3c783d65eee964ee --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 ```
@@ -1499,7 +1523,7 @@ service/basic-org3 created
 
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -it -- bash
-> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:b7967d6e60ec7d6cc3e7b615944fbc521f21c6e9b3673f3378fcc0354a46cb0f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:1694501aa998bdc5781575c2bcb3606e29a43f7ebfdacdcfcef966fb1b5a45f1  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:f3362fb9f0b5434e545f1dd36a78f05d05dc323645e5e3e48bae35d77d9762e3 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 
@@ -1509,7 +1533,7 @@ service/basic-org3 created
 
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
-> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:3ae51a8c8130c679d475ffaf7487edd328c59ad2d54c263b0ebcdde99f55861f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:c5525fee4ca14a3fee7d8b35a7cdfb29955bcbc28bbc97e9f4505ff151a01873  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:3a427a3537fc57ffd899c34f5eb8889f2726bf0b69fee2c6d04459edd10b1a41 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 

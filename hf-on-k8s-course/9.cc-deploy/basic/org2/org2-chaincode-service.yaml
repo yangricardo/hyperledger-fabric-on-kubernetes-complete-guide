@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: basic-org2
+  name: chaincode-basic-org2
   labels:
-    app: basic-org2
+    app: chaincode-basic-org2
 spec:
   ports:
     - name: grpc
