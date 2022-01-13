@@ -1594,4 +1594,9 @@ configmap/ca-client-config created
 
 ```bash
 > kubectl -f hf-on-k8s-course/10.api/k8/api.yaml apply
+
+# port forward
+> kubectl port-forward services/api 4000
 ```
+
+### Register account
