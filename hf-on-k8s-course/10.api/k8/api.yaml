@@ -35,7 +35,7 @@ spec:
               memory: '400Mi'
               cpu: '300m'
           image: yangricardo/hf-k8s-api:latest
-          imagePullPolicy: Always
+          imagePullPolicy: Never
           volumeMounts:
             - name: data
               mountPath: /usr/src/app/connection-profile

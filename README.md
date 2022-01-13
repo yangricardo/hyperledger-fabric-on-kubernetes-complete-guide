@@ -1589,3 +1589,9 @@ service/basic-org3 created
 > kubectl -f hf-on-k8s-course/10.api/k8/configmap.yaml apply
 configmap/ca-client-config created
 ```
+
+### Start API Server
+
+```bash
+> kubectl -f hf-on-k8s-course/10.api/k8/api.yaml apply
+```
