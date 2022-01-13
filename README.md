@@ -1575,3 +1575,10 @@ service/basic-org3 created
 ```
 
 ## API Server Deployment
+
+### Generate the connection profiles
+
+```bash
+> cd hf_nfs_client
+> bash scripts/ccp.sh
+```
