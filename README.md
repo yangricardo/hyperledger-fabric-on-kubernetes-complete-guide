@@ -1631,4 +1631,6 @@ pushd
 > kubectl apply -f hf-on-k8s-course/13.monitoring/prometheus-config.yaml
 # Prometheus deployment
 > kubectl apply -f hf-on-k8s-course/13.monitoring/prometheus.yaml
+# Grafana deployment
+> kubectl apply -f hf-on-k8s-course/13.monitoring/grafana.yaml
 ```
