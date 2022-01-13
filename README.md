@@ -1621,3 +1621,11 @@ pushd
 ```
 
 > Check on configmap if the private key path is correct
+
+## Monitoring
+
+```bash
+# Grafana config map
+> kubectl apply -f hf-on-k8s-course/13.monitoring/grafana-config.yaml
+configmap/grafana-config created
+```
