@@ -72,7 +72,7 @@
 ### Mount the NFS on local directory
 
 - Ubuntu: `sudo mount -o nolocks -t nfs 192.168.0.17:/mnt/nfs-server ./hf_nfs_client`
-- Fedora: `sudo mount -o nolock -t nfs 192.168.0.17:/mnt/hf_nfs_share  ./hf_nfs_client`
+- Fedora: `sudo mount -o nolock -t nfs 192.168.0.17:/mnt/hf_nfs_share ./hf_nfs_client`
 
 > Change the IP to your own
 
@@ -101,7 +101,7 @@ Access Modes:    RWO
 VolumeMode:      Filesystem
 Capacity:        5Gi
 Node Affinity:   <none>
-Message:         
+Message:
 Source:
     Type:      NFS (an NFS mount that lasts the lifetime of a pod)
     Server:    192.168.0.17
@@ -139,7 +139,7 @@ Events:        <none>
 ## Pod workload configuration
 
 ```bash
-> kubectl apply -f hf-on-k8s-course/1.nfs-config/pod.yaml 
+> kubectl apply -f hf-on-k8s-course/1.nfs-config/pod.yaml
 pod/hf-on-k8s-course-pv-pod created
 
 > kubectl describe pod hf-on-k8s-course-pv-podName:         hf-on-k8s-course-pv-pod
@@ -176,10 +176,10 @@ Containers:
       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-w7k8f (ro)
 Conditions:
   Type              Status
-  Initialized       True 
-  Ready             True 
-  ContainersReady   True 
-  PodScheduled      True 
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
 Volumes:
   hf-on-k8s-course-volume:
     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
@@ -231,10 +231,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ```bash
@@ -382,44 +382,44 @@ spec:
 ### Apply the deployment
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1.yaml 
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1.yaml
 deployment.apps/ca-org1 created
 ```
 
 ### Apply the service to the deployment applied
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1-service.yaml 
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org1/ca-org1-service.yaml
 service/ca-org1 created
 ```
 
 ### Repeat the steps for Org2 FabricCA
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2.yaml        
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2.yaml
 deployment.apps/ca-org2 created
 
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2-service.yaml 
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org2/ca-org2-service.yaml
 service/ca-org2 created
 ```
 
 ### Repeat the steps for Org3 FabricCA
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org3/ca-org3.yaml        
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org3/ca-org3.yaml
 deployment.apps/ca-org3 created
 
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org3/ca-org3-service.yaml 
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/org3/ca-org3-service.yaml
 service/ca-org3 created
 ```
 
 ### Repeat the steps for Orderer Org FabricCA
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer.yaml        
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer.yaml
 deployment.apps/ca-org3 created
 
-> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer-service.yaml 
+> kubectl apply -f ./hf-on-k8s-course/2.ca-config/ordererOrg/ca-orderer-service.yaml
 service/ca-org3 created
 ```
 
@@ -434,7 +434,7 @@ service/ca-org3 created
 ### Run channel-configuration-job to generate the channel configuration artifacts
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/4.channel-configuration-artifacts/channel-configuration-job.yaml 
+> kubectl apply -f ./hf-on-k8s-course/4.channel-configuration-artifacts/channel-configuration-job.yaml
 job.batch/artifacts created
 ```
 
@@ -443,7 +443,7 @@ job.batch/artifacts created
 ### orderer.example.com
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer1        
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer1
 service/orderer created
 deployment.apps/orderer created
 ```
@@ -451,7 +451,7 @@ deployment.apps/orderer created
 ### orderer2.example.com
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer2        
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer2
 service/orderer created
 deployment.apps/orderer created
 ```
@@ -459,7 +459,7 @@ deployment.apps/orderer created
 ### orderer3.example.com
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer3        
+> kubectl apply -f ./hf-on-k8s-course/5.orderer/orderer3
 service/orderer created
 deployment.apps/orderer created
 ```
@@ -483,7 +483,7 @@ deployment.apps/orderer created
 ## Apply Config map for external chaincode builders
 
 ```bash
-> kubectl apply -f ./hf-on-k8s-course/6.configmap                                            
+> kubectl apply -f ./hf-on-k8s-course/6.configmap
 configmap/builders-config created
 ```
 
@@ -591,10 +591,10 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.066 UTC [grpc] InfoDepth -> DEBU 00c [core]pickfirstBalancer: UpdateSubConnState: 0xc00033b660, {READY <nil>}
 2021-12-03 23:46:21.066 UTC [grpc] InfoDepth -> DEBU 00d [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.066 UTC 001c INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:21.067 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...53616D706C65436F6E736F727469756D 
-2021-12-03 23:46:21.067 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: 9B2637D4CB7C3D732603BDB0DEA68F65854673085A0111B2830446C0410431AF 
-2021-12-03 23:46:21.067 UTC 001f DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A0608CDD8AA8D0622...6E78D15CC5E00B211CFEE621C6EE6F77 
-2021-12-03 23:46:21.067 UTC 0020 DEBU [msp.identity] Sign -> Sign: digest: E2BBBCBE7085A5732819AA87A6312425AF2EE783D5017E71A34ACDA4DF327796 
+2021-12-03 23:46:21.067 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...53616D706C65436F6E736F727469756D
+2021-12-03 23:46:21.067 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: 9B2637D4CB7C3D732603BDB0DEA68F65854673085A0111B2830446C0410431AF
+2021-12-03 23:46:21.067 UTC 001f DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A0608CDD8AA8D0622...6E78D15CC5E00B211CFEE621C6EE6F77
+2021-12-03 23:46:21.067 UTC 0020 DEBU [msp.identity] Sign -> Sign: digest: E2BBBCBE7085A5732819AA87A6312425AF2EE783D5017E71A34ACDA4DF327796
 2021-12-03 23:46:21.150 UTC [grpc] WarningDepth -> DEBU 00e [core]Adjusting keepalive ping interval to minimum period of 10s
 2021-12-03 23:46:21.151 UTC [grpc] InfoDepth -> DEBU 00f [core]parsed scheme: ""
 2021-12-03 23:46:21.151 UTC [grpc] InfoDepth -> DEBU 010 [core]scheme "" not registered, fallback to default scheme
@@ -609,8 +609,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.152 UTC [grpc] InfoDepth -> DEBU 018 [core]Subchannel Connectivity change to READY
 2021-12-03 23:46:21.152 UTC [grpc] InfoDepth -> DEBU 019 [core]pickfirstBalancer: UpdateSubConnState: 0xc0004b7b30, {READY <nil>}
 2021-12-03 23:46:21.152 UTC [grpc] InfoDepth -> DEBU 01a [core]Channel Connectivity change to READY
-2021-12-03 23:46:21.161 UTC 0022 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...520B539D5A2E12080A021A0012021A00 
-2021-12-03 23:46:21.161 UTC 0023 DEBU [msp.identity] Sign -> Sign: digest: 22BC88022FDCACFF25D3D1742284A110712C6A42EE18F80B182575A0A48E3FF3 
+2021-12-03 23:46:21.161 UTC 0022 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...520B539D5A2E12080A021A0012021A00
+2021-12-03 23:46:21.161 UTC 0023 DEBU [msp.identity] Sign -> Sign: digest: 22BC88022FDCACFF25D3D1742284A110712C6A42EE18F80B182575A0A48E3FF3
 2021-12-03 23:46:21.161 UTC 0024 INFO [cli.common] readBlock -> Expect block, but got status: &{NOT_FOUND}
 2021-12-03 23:46:21.161 UTC 0025 DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:21.161 UTC [grpc] WarningDepth -> DEBU 01b [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -628,8 +628,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.163 UTC [grpc] InfoDepth -> DEBU 026 [core]pickfirstBalancer: UpdateSubConnState: 0xc00063a660, {READY <nil>}
 2021-12-03 23:46:21.163 UTC [grpc] InfoDepth -> DEBU 027 [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.163 UTC 0027 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:21.364 UTC 0028 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...C8D6C501D03412080A021A0012021A00 
-2021-12-03 23:46:21.364 UTC 0029 DEBU [msp.identity] Sign -> Sign: digest: 3ED588ABD08B6CA5F69C23B9A8AC44F18F57189F5F03B899BC2BFC40FE806C11 
+2021-12-03 23:46:21.364 UTC 0028 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...C8D6C501D03412080A021A0012021A00
+2021-12-03 23:46:21.364 UTC 0029 DEBU [msp.identity] Sign -> Sign: digest: 3ED588ABD08B6CA5F69C23B9A8AC44F18F57189F5F03B899BC2BFC40FE806C11
 2021-12-03 23:46:21.365 UTC 002a INFO [cli.common] readBlock -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
 2021-12-03 23:46:21.365 UTC 002b DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:21.365 UTC [grpc] WarningDepth -> DEBU 028 [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -647,8 +647,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.367 UTC [grpc] InfoDepth -> DEBU 033 [core]pickfirstBalancer: UpdateSubConnState: 0xc000469260, {READY <nil>}
 2021-12-03 23:46:21.367 UTC [grpc] InfoDepth -> DEBU 034 [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.367 UTC 002d INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:21.567 UTC 002e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...2DB92BFA507C12080A021A0012021A00 
-2021-12-03 23:46:21.567 UTC 002f DEBU [msp.identity] Sign -> Sign: digest: F8E6DD93E25729AA834D088EDBB7C798CB19E4ACE05B53BC4765B1676E9F903E 
+2021-12-03 23:46:21.567 UTC 002e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...2DB92BFA507C12080A021A0012021A00
+2021-12-03 23:46:21.567 UTC 002f DEBU [msp.identity] Sign -> Sign: digest: F8E6DD93E25729AA834D088EDBB7C798CB19E4ACE05B53BC4765B1676E9F903E
 2021-12-03 23:46:21.568 UTC 0030 INFO [cli.common] readBlock -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
 2021-12-03 23:46:21.568 UTC 0031 DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:21.568 UTC [grpc] WarningDepth -> DEBU 035 [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -666,8 +666,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.570 UTC [grpc] InfoDepth -> DEBU 040 [core]pickfirstBalancer: UpdateSubConnState: 0xc000469ff0, {READY <nil>}
 2021-12-03 23:46:21.570 UTC [grpc] InfoDepth -> DEBU 041 [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.570 UTC 0033 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:21.770 UTC 0034 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...8D28C947B95C12080A021A0012021A00 
-2021-12-03 23:46:21.770 UTC 0035 DEBU [msp.identity] Sign -> Sign: digest: 21A95656053A41CCA6C8D3A70790D0BC83EA88756E26995F3AA0945D092BE5EF 
+2021-12-03 23:46:21.770 UTC 0034 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...8D28C947B95C12080A021A0012021A00
+2021-12-03 23:46:21.770 UTC 0035 DEBU [msp.identity] Sign -> Sign: digest: 21A95656053A41CCA6C8D3A70790D0BC83EA88756E26995F3AA0945D092BE5EF
 2021-12-03 23:46:21.771 UTC 0036 INFO [cli.common] readBlock -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
 2021-12-03 23:46:21.771 UTC 0037 DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:21.771 UTC [grpc] WarningDepth -> DEBU 042 [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -685,8 +685,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.773 UTC [grpc] InfoDepth -> DEBU 04d [core]pickfirstBalancer: UpdateSubConnState: 0xc0004b7710, {READY <nil>}
 2021-12-03 23:46:21.773 UTC [grpc] InfoDepth -> DEBU 04e [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.773 UTC 0039 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:21.974 UTC 003a DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...78F9249FCA3112080A021A0012021A00 
-2021-12-03 23:46:21.974 UTC 003b DEBU [msp.identity] Sign -> Sign: digest: 0F74B3E30DD9CD561A87005D226798330A8D4A6C0044F9F2391D0A2A437AC99B 
+2021-12-03 23:46:21.974 UTC 003a DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CDD8AA8D0622...78F9249FCA3112080A021A0012021A00
+2021-12-03 23:46:21.974 UTC 003b DEBU [msp.identity] Sign -> Sign: digest: 0F74B3E30DD9CD561A87005D226798330A8D4A6C0044F9F2391D0A2A437AC99B
 2021-12-03 23:46:21.974 UTC 003c INFO [cli.common] readBlock -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
 2021-12-03 23:46:21.974 UTC 003d DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:21.975 UTC [grpc] WarningDepth -> DEBU 04f [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -704,8 +704,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:21.976 UTC [grpc] InfoDepth -> DEBU 05a [core]pickfirstBalancer: UpdateSubConnState: 0xc0005c7180, {READY <nil>}
 2021-12-03 23:46:21.976 UTC [grpc] InfoDepth -> DEBU 05b [core]Channel Connectivity change to READY
 2021-12-03 23:46:21.976 UTC 003f INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:22.176 UTC 0040 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CED8AA8D0622...9F4CC912A25612080A021A0012021A00 
-2021-12-03 23:46:22.176 UTC 0041 DEBU [msp.identity] Sign -> Sign: digest: A3FDC7CE0B3D3B1A428DB4F83D556D9373E3825295D46806182CF2D9786A7BCB 
+2021-12-03 23:46:22.176 UTC 0040 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CED8AA8D0622...9F4CC912A25612080A021A0012021A00
+2021-12-03 23:46:22.176 UTC 0041 DEBU [msp.identity] Sign -> Sign: digest: A3FDC7CE0B3D3B1A428DB4F83D556D9373E3825295D46806182CF2D9786A7BCB
 2021-12-03 23:46:22.177 UTC 0042 INFO [cli.common] readBlock -> Expect block, but got status: &{SERVICE_UNAVAILABLE}
 2021-12-03 23:46:22.177 UTC 0043 DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-03 23:46:22.177 UTC [grpc] WarningDepth -> DEBU 05c [core]Adjusting keepalive ping interval to minimum period of 10s
@@ -723,8 +723,8 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:46:22.179 UTC [grpc] InfoDepth -> DEBU 067 [core]pickfirstBalancer: UpdateSubConnState: 0xc00063bad0, {READY <nil>}
 2021-12-03 23:46:22.179 UTC [grpc] InfoDepth -> DEBU 068 [core]Channel Connectivity change to READY
 2021-12-03 23:46:22.179 UTC 0045 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:46:22.379 UTC 0046 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CED8AA8D0622...C5F1E0AA3C1312080A021A0012021A00 
-2021-12-03 23:46:22.380 UTC 0047 DEBU [msp.identity] Sign -> Sign: digest: 6E96E992223981945E4DD8B07D3BFF82F00C95B50DD3DAAB22FCD3E102EAFE4D 
+2021-12-03 23:46:22.379 UTC 0046 DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508051A0608CED8AA8D0622...C5F1E0AA3C1312080A021A0012021A00
+2021-12-03 23:46:22.380 UTC 0047 DEBU [msp.identity] Sign -> Sign: digest: 6E96E992223981945E4DD8B07D3BFF82F00C95B50DD3DAAB22FCD3E102EAFE4D
 2021-12-03 23:46:22.382 UTC 0048 INFO [cli.common] readBlock -> Received block: 0
 ```
 
@@ -820,15 +820,15 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-03 23:52:07.770 UTC [grpc] InfoDepth -> DEBU 00b [core]pickfirstBalancer: UpdateSubConnState: 0xc00033cf90, {READY <nil>}
 2021-12-03 23:52:07.770 UTC [grpc] InfoDepth -> DEBU 00c [core]Channel Connectivity change to READY
 2021-12-03 23:52:07.770 UTC 001c INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:52:07.771 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE7080A5C08011A0C08A7DBAA8D0610...FE18A3E41A0A0A000A000A000A000A00 
-2021-12-03 23:52:07.771 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: A6BCFCE9F0A2E15786719F2BF3E4AAB1FAF6171A33CA07A1B8F1FF8F4BB17D52 
+2021-12-03 23:52:07.771 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE7080A5C08011A0C08A7DBAA8D0610...FE18A3E41A0A0A000A000A000A000A00
+2021-12-03 23:52:07.771 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: A6BCFCE9F0A2E15786719F2BF3E4AAB1FAF6171A33CA07A1B8F1FF8F4BB17D52
 2021-12-03 23:52:08.076 UTC 001f INFO [channelCmd] executeJoin -> Successfully submitted proposal to join channel
 ```
 
 ### Org2 Peer0
 
 ```bash
-kubectl exec -it -f ./hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml -- peer channel join -b ./channel-artifacts/mychannel.block 
+kubectl exec -it -f ./hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml -- peer channel join -b ./channel-artifacts/mychannel.block
 2021-12-03 23:54:11.457 UTC 0001 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
 2021-12-03 23:54:11.458 UTC 0002 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
 2021-12-03 23:54:11.467 UTC 0003 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
@@ -914,8 +914,8 @@ SOW/Fzt6qzIi3jr4S7WsVQ==
 2021-12-03 23:54:11.557 UTC [grpc] InfoDepth -> DEBU 00b [core]pickfirstBalancer: UpdateSubConnState: 0xc00028f910, {READY <nil>}
 2021-12-03 23:54:11.557 UTC [grpc] InfoDepth -> DEBU 00c [core]Channel Connectivity change to READY
 2021-12-03 23:54:11.557 UTC 001c INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:54:11.558 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE7080A5C08011A0C08A3DCAA8D0610...FE18A3E41A0A0A000A000A000A000A00 
-2021-12-03 23:54:11.558 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: 42162BB6BDC35932B6930ABDED77F680B0A1E902444BF807CD8B3CFA7085DA7A 
+2021-12-03 23:54:11.558 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE7080A5C08011A0C08A3DCAA8D0610...FE18A3E41A0A0A000A000A000A000A00
+2021-12-03 23:54:11.558 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: 42162BB6BDC35932B6930ABDED77F680B0A1E902444BF807CD8B3CFA7085DA7A
 2021-12-03 23:54:11.866 UTC 001f INFO [channelCmd] executeJoin -> Successfully submitted proposal to join channel
 ```
 
@@ -1008,8 +1008,8 @@ lgKP+nfoBre1r5JFT7fp
 2021-12-03 23:55:55.253 UTC [grpc] InfoDepth -> DEBU 00b [core]pickfirstBalancer: UpdateSubConnState: 0xc00051e890, {READY <nil>}
 2021-12-03 23:55:55.254 UTC [grpc] InfoDepth -> DEBU 00c [core]Channel Connectivity change to READY
 2021-12-03 23:55:55.254 UTC 001c INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-03 23:55:55.254 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE2080A5B08011A0B088BDDAA8D0610...FE18A3E41A0A0A000A000A000A000A00 
-2021-12-03 23:55:55.254 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: B13F44728A87B14561657233AA30A3328DAC62B3E7C79151B8E499C96326E6E0 
+2021-12-03 23:55:55.254 UTC 001d DEBU [msp.identity] Sign -> Sign: plaintext: 0AE2080A5B08011A0B088BDDAA8D0610...FE18A3E41A0A0A000A000A000A000A00
+2021-12-03 23:55:55.254 UTC 001e DEBU [msp.identity] Sign -> Sign: digest: B13F44728A87B14561657233AA30A3328DAC62B3E7C79151B8E499C96326E6E0
 2021-12-03 23:55:55.567 UTC 001f INFO [channelCmd] executeJoin -> Successfully submitted proposal to join channel
 ```
 
@@ -1018,7 +1018,7 @@ lgKP+nfoBre1r5JFT7fp
 ### Configure Org1 Peer0 as anchor peer on `mychannel`
 
 ```bash
-> kubectl exec -it -f ./hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml -- bash /scripts/updateAnchorPeer.sh Org1MSP               
+> kubectl exec -it -f ./hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml -- bash /scripts/updateAnchorPeer.sh Org1MSP
 2021-12-04 00:00:24.457 UTC 0001 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
 2021-12-04 00:00:24.458 UTC 0002 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
 2021-12-04 00:00:24.465 UTC 0003 DEBU [bccsp] GetDefault -> Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.
@@ -1091,10 +1091,10 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-04 00:00:24.469 UTC 0019 DEBU [msp] setupSigningIdentity -> Signing identity expires at 2022-12-03 21:56:00 +0000 UTC
 2021-12-04 00:00:24.550 UTC 001a DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-04 00:00:24.551 UTC 001b INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-04 00:00:24.551 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...41646D696E7312002A0641646D696E73 
-2021-12-04 00:00:24.551 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: C2C95B6531CB9E1CD80829F10D19BA956289AC1FEB65432E8342362118394A66 
-2021-12-04 00:00:24.551 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060898DFAA8D0622...22477381DA5FAD20ED8B5A6511D7C3E7 
-2021-12-04 00:00:24.551 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: A7ECF87D55A44BE4AE8B877A020856B9CBD6FD4BE82E183CF2072DD5F30C289B 
+2021-12-04 00:00:24.551 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...41646D696E7312002A0641646D696E73
+2021-12-04 00:00:24.551 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: C2C95B6531CB9E1CD80829F10D19BA956289AC1FEB65432E8342362118394A66
+2021-12-04 00:00:24.551 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060898DFAA8D0622...22477381DA5FAD20ED8B5A6511D7C3E7
+2021-12-04 00:00:24.551 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: A7ECF87D55A44BE4AE8B877A020856B9CBD6FD4BE82E183CF2072DD5F30C289B
 2021-12-04 00:00:24.551 UTC [grpc] WarningDepth -> DEBU 001 [core]Adjusting keepalive ping interval to minimum period of 10s
 2021-12-04 00:00:24.551 UTC [grpc] InfoDepth -> DEBU 002 [core]parsed scheme: ""
 2021-12-04 00:00:24.551 UTC [grpc] InfoDepth -> DEBU 003 [core]scheme "" not registered, fallback to default scheme
@@ -1110,7 +1110,7 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-04 00:00:24.553 UTC [grpc] InfoDepth -> DEBU 00c [core]pickfirstBalancer: UpdateSubConnState: 0xc0003033b0, {READY <nil>}
 2021-12-04 00:00:24.553 UTC [grpc] InfoDepth -> DEBU 00d [core]Channel Connectivity change to READY
 2021-12-04 00:00:24.560 UTC 0021 INFO [channelCmd] update -> Successfully submitted channel update
-➜  hyperledger-fabric-on-kubernetes-complete-guide git:(main) 
+➜  hyperledger-fabric-on-kubernetes-complete-guide git:(main)
 AxMHY2Etb3JnMTAeFw0yMTEyMDMyMTAwMDBaFw0zNjExMjkyMTAwMDBaMGkxCzAJ
 BgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazERMA8GA1UEBxMITmV3IFlvcmsx
 EDAOBgNVBAoTB2NhLW9yZzExEDAOBgNVBAsTB2NhLW9yZzExEDAOBgNVBAMTB2Nh
@@ -1159,10 +1159,10 @@ m69fAKnaK7j6eBSecSNV5Q==
 2021-12-04 00:00:24.469 UTC 0019 DEBU [msp] setupSigningIdentity -> Signing identity expires at 2022-12-03 21:56:00 +0000 UTC
 2021-12-04 00:00:24.550 UTC 001a DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-04 00:00:24.551 UTC 001b INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-04 00:00:24.551 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...41646D696E7312002A0641646D696E73 A0641646D696E73 
-2021-12-04 00:00:24.551 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: C2C95B6531CB9E1CD80829F10D19BA956289AC1FEB65432E8342362118394A66 118394A66 
-2021-12-04 00:00:24.551 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060898DFAA8D0622...22477381DA5FAD20ED8B5A6511D7C3E7 D8B5A6511D7C3E7 
-2021-12-04 00:00:24.551 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: A7ECF87D55A44BE4AE8B877A020856B9CBD6FD4BE82E183CF2072DD5F30C289B 5F30C289B 
+2021-12-04 00:00:24.551 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267314D535012DD072D...41646D696E7312002A0641646D696E73 A0641646D696E73
+2021-12-04 00:00:24.551 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: C2C95B6531CB9E1CD80829F10D19BA956289AC1FEB65432E8342362118394A66 118394A66
+2021-12-04 00:00:24.551 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060898DFAA8D0622...22477381DA5FAD20ED8B5A6511D7C3E7 D8B5A6511D7C3E7
+2021-12-04 00:00:24.551 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: A7ECF87D55A44BE4AE8B877A020856B9CBD6FD4BE82E183CF2072DD5F30C289B 5F30C289B
 2021-12-04 00:00:24.551 UTC [grpc] WarningDepth -> DEBU 001 [core]Adjusting keepalive ping interval to minimum period of 10s
 2021-12-04 00:00:24.551 UTC [grpc] InfoDepth -> DEBU 002 [core]parsed scheme: ""rsed scheme: ""
 2021-12-04 00:00:24.551 UTC [grpc] InfoDepth -> DEBU 003 [core]scheme "" not registered, fallback to default scheme
@@ -1256,10 +1256,10 @@ SOW/Fzt6qzIi3jr4S7WsVQ==
 2021-12-04 00:02:29.153 UTC 0019 DEBU [msp] setupSigningIdentity -> Signing identity expires at 2022-12-03 21:56:00 +0000 UTC
 2021-12-04 00:02:29.153 UTC 001a DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-04 00:02:29.153 UTC 001b INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-04 00:02:29.154 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267324D535012DD072D...72697465727312002A0641646D696E73 
-2021-12-04 00:02:29.154 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: 01F42D8A29C7FAD3862E86289E9EAD8BF19ADC6BDF24F2015438B676F71994A5 
-2021-12-04 00:02:29.154 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060895E0AA8D0622...D364EA1FB90594CB4CCF24C9F53964FF 
-2021-12-04 00:02:29.154 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: CF82EDFD6AE3F91B0D992E0C61A7DE909410A979707DC5A7A10AD49A1FBFBADD 
+2021-12-04 00:02:29.154 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE9070A074F7267324D535012DD072D...72697465727312002A0641646D696E73
+2021-12-04 00:02:29.154 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: 01F42D8A29C7FAD3862E86289E9EAD8BF19ADC6BDF24F2015438B676F71994A5
+2021-12-04 00:02:29.154 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0AA0080A1508021A060895E0AA8D0622...D364EA1FB90594CB4CCF24C9F53964FF
+2021-12-04 00:02:29.154 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: CF82EDFD6AE3F91B0D992E0C61A7DE909410A979707DC5A7A10AD49A1FBFBADD
 2021-12-04 00:02:29.155 UTC [grpc] WarningDepth -> DEBU 001 [core]Adjusting keepalive ping interval to minimum period of 10s
 2021-12-04 00:02:29.155 UTC [grpc] InfoDepth -> DEBU 002 [core]parsed scheme: ""
 2021-12-04 00:02:29.155 UTC [grpc] InfoDepth -> DEBU 003 [core]scheme "" not registered, fallback to default scheme
@@ -1353,10 +1353,10 @@ lgKP+nfoBre1r5JFT7fp
 2021-12-04 00:03:58.651 UTC 0019 DEBU [msp] setupSigningIdentity -> Signing identity expires at 2022-12-03 21:56:00 +0000 UTC
 2021-12-04 00:03:58.652 UTC 001a DEBU [msp] GetDefaultSigningIdentity -> Obtaining default signing identity
 2021-12-04 00:03:58.652 UTC 001b INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
-2021-12-04 00:03:58.653 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE5070A074F7267334D535012D9072D...73656D656E7412002A0641646D696E73 
-2021-12-04 00:03:58.653 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: 1FC6306EDE21709A4E21A24D4BEE4F9B7BCE0F8C780DACF7D0C57852AC34376B 
-2021-12-04 00:03:58.653 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0A9C080A1508021A0608EEE0AA8D0622...559A0B19D5CA7382060F0C71FE914EEF 
-2021-12-04 00:03:58.653 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: C859D3B477DD2CE59E98109EE9BEF042FBC59E9EFEAA14151D4732575E6D2302 
+2021-12-04 00:03:58.653 UTC 001c DEBU [msp.identity] Sign -> Sign: plaintext: 0AE5070A074F7267334D535012D9072D...73656D656E7412002A0641646D696E73
+2021-12-04 00:03:58.653 UTC 001d DEBU [msp.identity] Sign -> Sign: digest: 1FC6306EDE21709A4E21A24D4BEE4F9B7BCE0F8C780DACF7D0C57852AC34376B
+2021-12-04 00:03:58.653 UTC 001e DEBU [msp.identity] Sign -> Sign: plaintext: 0A9C080A1508021A0608EEE0AA8D0622...559A0B19D5CA7382060F0C71FE914EEF
+2021-12-04 00:03:58.653 UTC 001f DEBU [msp.identity] Sign -> Sign: digest: C859D3B477DD2CE59E98109EE9BEF042FBC59E9EFEAA14151D4732575E6D2302
 2021-12-04 00:03:58.653 UTC [grpc] WarningDepth -> DEBU 001 [core]Adjusting keepalive ping interval to minimum period of 10s
 2021-12-04 00:03:58.653 UTC [grpc] InfoDepth -> DEBU 002 [core]parsed scheme: ""
 2021-12-04 00:03:58.653 UTC [grpc] InfoDepth -> DEBU 003 [core]scheme "" not registered, fallback to default scheme
@@ -1378,7 +1378,7 @@ lgKP+nfoBre1r5JFT7fp
 
 ### Copy Chaincode source code to NFS
 
-`cp -R hlf-kubernetes/8.chaincode/*  hf_nfs_client/chaincode`
+`cp -R hlf-kubernetes/8.chaincode/* hf_nfs_client/chaincode`
 
 ### Generate the package definitions for chaincode
 
@@ -1428,7 +1428,19 @@ tar cfz ${CHAINCODE_ROOT_DIR}/${CHAINCODE_NAME}-${ORG}.tgz code.tar.gz metadata.
 
 ### Run Peer Lifecycle install command indicating the package file needed to use
 
-`peer lifecycle install basic-org1.tgz`
+`peer lifecycle chaincode install basic-org1.tgz`
+
+kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org1.tgz
+
+fabric-es-chaincode:f1684b419bab0d122b62f452ed1a9f756de8f58150599f6a3c783d65eee964ee
+
+kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org2.tgz
+
+fabric-es-chaincode:f3362fb9f0b5434e545f1dd36a78f05d05dc323645e5e3e48bae35d77d9762e3
+
+kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -- peer lifecycle chaincode install /opt/gopath/src/github.com/chaincode/fabric-es-chaincode/packaging/fabric-es-chaincode-org3.tgz
+
+fabric-es-chaincode:3a427a3537fc57ffd899c34f5eb8889f2726bf0b69fee2c6d04459edd10b1a41
 
 ### Look at the end of the logs to identify the package id to be used on other steps
 
@@ -1479,6 +1491,8 @@ service/basic-org3 created
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org1/peer0Org1-cli.yaml exec -it -- bash
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:f44db99fa698325882c4392a3dd5f8bd68149f8aaee5eeabff84be5f6cf5b145 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:f1684b419bab0d122b62f452ed1a9f756de8f58150599f6a3c783d65eee964ee --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
 ```
 
 ### Org2
@@ -1486,6 +1500,9 @@ service/basic-org3 created
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org2/peer0Org2-cli.yaml exec -it -- bash
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:b7967d6e60ec7d6cc3e7b615944fbc521f21c6e9b3673f3378fcc0354a46cb0f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:f3362fb9f0b5434e545f1dd36a78f05d05dc323645e5e3e48bae35d77d9762e3 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+
 ```
 
 ### Org3
@@ -1493,6 +1510,9 @@ service/basic-org3 created
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
 > peer lifecycle chaincode approveformyorg --channelID mychannel --name basic --version 1.0 --init-required --package-id basic:3ae51a8c8130c679d475ffaf7487edd328c59ad2d54c263b0ebcdde99f55861f  --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+
+> peer lifecycle chaincode approveformyorg --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --package-id fabric-es-chaincode:3a427a3537fc57ffd899c34f5eb8889f2726bf0b69fee2c6d04459edd10b1a41 --sequence 1 -o orderer:7050 --tls --cafile $ORDERER_CA
+
 ```
 
 ## Check commit readiness
@@ -1508,6 +1528,8 @@ service/basic-org3 created
                 "Org3MSP": true
         }
 }
+
+> peer lifecycle chaincode checkcommitreadiness --channelID mychannel --name fabric-es-chaincode --version 1.0 --init-required --sequence 1 -o -orderer:7050 --tls --cafile $ORDERER_CA --output json
 ```
 
 ## Commit chaincode definition
@@ -1515,4 +1537,15 @@ service/basic-org3 created
 ```bash
 > kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
 > peer lifecycle chaincode commit -o orderer:7050 --channelID mychannel --name basic --version 1.0 --sequence 1 --init-required --tls true --cafile $ORDERER_CA --peerAddresses peer0-org1:7051 --tlsRootCertFiles /organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0-org2:7051 --tlsRootCertFiles /organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --peerAddresses peer0-org3:7051 --tlsRootCertFiles /organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
+
+> peer lifecycle chaincode commit -o orderer:7050 --channelID mychannel --name fabric-es-chaincode  --version 1.0 --sequence 1 --init-required --tls true --cafile $ORDERER_CA --peerAddresses peer0-org1:7051 --tlsRootCertFiles /organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0-org2:7051 --tlsRootCertFiles /organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --peerAddresses peer0-org3:7051 --tlsRootCertFiles /organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
+```
+
+## Commit chaincode definition
+
+```bash
+> kubectl -f hf-on-k8s-course/7.peers/org3/peer0Org3-cli.yaml exec -it -- bash
+> peer chaincode invoke -o orderer:7050 --isInit --tls true --cafile $ORDERER_CA -C mychannel -n basic --peerAddresses peer0-org1:7051 --tlsRootCertFiles /organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0-org2:7051 --tlsRootCertFiles /organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --peerAddresses peer0-org3:7051 --tlsRootCertFiles /organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt -c '{"Args":["InitLedger"]}' --waitForEvent
+
+> peer chaincode invoke -o orderer:7050 --isInit --tls true --cafile $ORDERER_CA -C mychannel -n fabric-es-chaincode --peerAddresses peer0-org1:7051 --tlsRootCertFiles /organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses peer0-org2:7051 --tlsRootCertFiles /organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt --peerAddresses peer0-org3:7051 --tlsRootCertFiles /organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt -c '{"Args":["Init"]}' --waitForEvent
 ```

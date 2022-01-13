@@ -1,0 +1,14 @@
+--- #---------------- Chaincode Service ---------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: fabric-es-chaincode-org3
+  labels:
+    app: fabric-es-chaincode-org3
+spec:
+  ports:
+    - name: grpc
+      port: 7052
+      targetPort: 7052
+  selector:
+    app: fabric-es-chaincode-org3

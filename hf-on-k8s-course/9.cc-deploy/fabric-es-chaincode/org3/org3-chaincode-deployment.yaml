@@ -1,0 +1,30 @@
+---
+#---------------- Chaincode Deployment ---------------------
+apiVersion: apps/v1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: fabric-es-chaincode-org3
+  labels:
+    app: fabric-es-chaincode-org3
+spec:
+  selector:
+    matchLabels:
+      app: fabric-es-chaincode-org3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fabric-es-chaincode-org3
+    spec:
+      containers:
+        - image: yangricardo/fabric-es-chaincode:latest
+          name: fabric-es-chaincode-org3
+          imagePullPolicy: Never
+          env:
+            - name: CHAINCODE_CCID
+              value: 'fabric-es-chaincode:3a427a3537fc57ffd899c34f5eb8889f2726bf0b69fee2c6d04459edd10b1a41'
+            - name: CHAINCODE_ADDRESS
+              value: '0.0.0.0:7052'
+          ports:
+            - containerPort: 7052
